@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class UnusualCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите выражение в формате 'число операция число':");
+        String input = scanner.nextLine();
+
+        String[] parts = input.split(" ");
+        if (parts.length != 3) {
+            System.out.println("Некорректный формат выражения!");
+            return;
+        }
+
+        double result;
+        try {
+            double num1 = Double.parseDouble(parts[0]);
+            double num2 = Double.parseDouble(parts[2]);
+            String operation = parts[1];
+
+            switch (operation) {
+                case "плюс":
+                    result = num1 + num2;
+                    System.out.println("Результат: " + result);
+                    break;
+                case "минус":
+                    result = num1 - num2;
+                    System.out.println("Результат: " + result);
+                    break;
+                case "умножить":
+                    result = num1 * num2;
+                    System.out.println("Результат: " + result);
+                    break;
+                case "разделить":
+                    if (num2 != 0) {
+                        result = num1 / num2;
+                        System.out.println("Результат: " + result);
+                    } else {
+                        System.out.println("Ошибка: деление на ноль!");
+                    }
+                    break;
+                default:
+                    System.out.println("Некорректная операция!");
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректные числа!");
+        }
+
+        scanner.close();
+    }
+}
